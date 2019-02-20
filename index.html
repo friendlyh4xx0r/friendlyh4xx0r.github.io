@@ -1,0 +1,93 @@
+<html>
+    <head>
+        <title>ChromecastHack Stats</title>
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.8/themes/odometer-theme-default.min.css' />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+        <style>
+            body {
+                background-color: #3c3c3c;
+                text-align:center;
+                color: white;
+            }
+
+            h4 {
+                font-size: 130px;
+            }
+
+            .jumbotron {
+                margin-top: 30px;
+                color: black;
+            }
+
+            a:hover, a:visited, a:link, a:active {
+                text-decoration: none;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container-fluid">
+            <div class="container">
+                <div class="jumbotron">
+                    <h1 class="display-4">#ChromecastHack</h1>
+		    <p class="lead">Real-time statistics are disabled. (And so is the IP check that checks if you're affected)</p>
+                    <p class="lead"><strike>On this page you can track the progress of the hack and see how many devices it has affected so far.</strike></p>
+                    <p class="lead">Developed by <a href="https://twitter.com/friendlyh4xx0r">@FriendlyH4xx0r</a></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <h1>Chromecasts/TVs Found</h1>
+                    <h4 id="found" class="odometer">0</h4>
+                </div>
+                <div class="col-sm-4">
+                    <h1>Alive</h1>
+                    <h4 id="success" class="odometer">0</h4>
+                </div>
+                <div class="col-md-4">
+                    <h1>Dead</h1>
+                    <h4 id="failed" class="odometer">0</h4>
+                </div>
+
+                <div class="col-md-4">
+                    <h1>Played</h1>
+                    <h4 id="played" class="odometer">0</h4>
+                </div>
+                <div class="col-sm-4">
+                    <h1>Total IPs</h1>
+                    <h4 id="total_ips" class="odometer">0</h4>
+                </div>
+                <div class="col-lg-4">
+                    <h1>Workers</h1>
+                    <h4 id="workers" class="odometer">0</h4>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.8/odometer.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script>
+        //let socket = io();
+        let affectedMessage = "It appears that you have been affected by this hack.\n\n" +
+            "To prevent this from happening in the future and protect the rest of the devices in your network we recommend going to your modem/router configuration page and disabling Universal Plug and Play (Also called uPnP)\n\n" +
+            "If you're not technical savvy or don't want to mess with router settings we recommend giving your Internet Service Provider a call and asking them to disable it for you.\n";
+        $(document).ready(() => {swal('Warning', affectedMessage, 'warning')})
+	/*socket.on('connect', () => console.log('connected to server'));
+        socket.on('disconnect', () => console.log('lost connection'));
+        socket.on('affected', () => swal('Warning', affectedMessage, 'warning'));
+        socket.on('data', function(data){
+            $("#found")     .text(data.devices       || 0);
+            $("#success")   .text(data.success       || 0);
+            $("#failed")    .text(data.failed        || 0);
+            $("#total_ips") .text(data.total_ips     || 0);
+            $("#workers")   .text(data.workers       || 0);
+            $("#played")    .text(data.played        || 0);
+        })*/
+    </script>
+</html>
